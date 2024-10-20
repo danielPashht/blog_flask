@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask import session as flask_session
-from models.models import Post
+from models.models import Post, Comment
 from database.db import get_session
 from datetime import timedelta
 
@@ -47,6 +47,17 @@ def add_post():
 		return render_template('add_post.html')
 
 
+@app.route('/post/<int:post_id>', methods=['GET', 'POST'])
+def post(post_id):
+	if 'user' not in flask_session:
+		return redirect(url_for('login'))
+	with get_session() as session:
+		post_data = session.query(Post).filter(Post.id == post_id).first()
+		if request.method == 'POST':
+			comment = Comment(post_id=post_data.id, user_name=flask_session['user'], content=request.form['content'])
+			session.add(comment)
+		return render_template('post.html', post=post_data, comments=post_data.comments)
+
+
 if __name__ == '__main__':
 	app.run(debug=True, port=5002)
-

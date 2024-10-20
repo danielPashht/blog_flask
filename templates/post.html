@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Post{% endblock %}
+
+{% block content %}
+<h2>{{ post.content }}</h2>
+<p>Posted by @{{ post.user_name }} on {{ post.created_at.strftime('%Y-%m-%d') }}</p>
+
+<h3>Comments</h3>
+<ul>
+    {% for comment in comments %}
+    <li>
+        <p>{{ comment.content }}</p>
+        <p>Commented by @{{ comment.user_name }} on {{ comment.created_at.strftime('%Y-%m-%d') }}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+<h3>Add a Comment</h3>
+<form action="" method="post">
+    <textarea name="content" placeholder="Add your comment" rows="2"></textarea>
+    <input type="submit" value="Comment">
+</form>
+{% endblock %}

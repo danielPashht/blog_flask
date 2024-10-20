@@ -11,6 +11,7 @@
       <form class="container-fluid justify-content-start">
         <button class="btn btn-outline-success me-2" type="button" id="posts-header-btn" onclick="window.location.href='{{ url_for('index') }}'">All Posts</button>
         <button class="btn btn-outline-success me-2" type="button" id="posts-header-add" onclick="window.location.href='{{ url_for('add_post') }}'">Add Post</button>
+        <button type="button" class="btn btn-outline-secondary" id="logout-btn" onclick="window.location.href='{{ url_for('logout') }}'">Logout</button>
       </form>
     </nav>
     <h1>Posty</h1>
@@ -29,4 +30,7 @@
   #posts-header-add {
     transform: translateX(-50%);
   }
+    #logout-btn {
+        margin-right: auto;
+    }
 </style>

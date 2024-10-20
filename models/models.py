@@ -14,12 +14,14 @@ class Post(BaseModel):
     created_at = Column(DateTime, default=datetime.utcnow)
 
 
-# class User(BaseModel):
-#     __tablename__ = 'users'
-#
-#     id = Column(Integer, primary_key=True)
-#     name = Column(String)
-#     posts = relationship('Post', backref='user')
+class Comment(BaseModel):
+    __tablename__ = 'comments'
+
+    user_name = Column(String)
+    content = Column(Text)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    post_id = Column(Integer, ForeignKey('posts.id'))
+    post = relationship('Post', backref='comments')
 
 
 BaseModel.metadata.create_all(engine)
