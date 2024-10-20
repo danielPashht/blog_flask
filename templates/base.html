@@ -9,7 +9,8 @@
   <body>
     <nav class="navbar bg-body-tertiary">
       <form class="container-fluid justify-content-start">
-        <button class="btn btn-outline-success me-2" type="button" id="posts-header-btn">ALL POSTS</button>
+        <button class="btn btn-outline-success me-2" type="button" id="posts-header-btn" onclick="window.location.href='{{ url_for('index') }}'">All Posts</button>
+        <button class="btn btn-outline-success me-2" type="button" id="posts-header-add" onclick="window.location.href='{{ url_for('add_post') }}'">Add Post</button>
       </form>
     </nav>
     <h1>Posty</h1>
@@ -24,5 +25,8 @@
     margin-left: 50%;
     transform: translateX(-50%);
     text-decoration: underline;
+  }
+  #posts-header-add {
+    transform: translateX(-50%);
   }
 </style>

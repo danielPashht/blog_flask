@@ -1,5 +1,59 @@
 {% extends 'base.html' %}
 {% block title %}Posts{% endblock %}
 {% block content %}
-<h2>Posts list</h2>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        padding: 20px;
+    }
+    h2 {
+        color: black;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .post {
+        border-bottom: 1px solid #e6ecf0;
+        padding: 15px 0;
+    }
+    .post:last-child {
+        border-bottom: none;
+    }
+    .user-name {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .post-content {
+        margin: 0;
+        line-height: 1.4;
+    }
+    .post-date {
+        color: #657786;
+        font-size: 0.8em;
+        padding-top: 7px;
+    }
+</style>
+
+<div class="container">
+    <h2>Recent posts</h2>
+    <ul>
+        {% for post in posts %}
+        <li class="post">
+            <div class="user-name">@{{ post.user_name }}</div>
+            <p class="post-content">{{ post.content }}</p>
+            <p class="post-date">{{ post.created_at.strftime('%Y-%m-%d') }}</p>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}
