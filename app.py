@@ -59,5 +59,19 @@ def post(post_id):
 		return render_template('post.html', post=post_data, comments=post_data.comments)
 
 
+@app.route('/edit/<int:post_id>', methods=['GET', 'POST'])
+def edit_post(post_id):
+	if 'user' not in flask_session:
+		return redirect(url_for('login'))
+	with get_session() as session:
+		post = session.query(Post).filter(Post.id == post_id).first()
+		if request.method == 'POST':
+			post.content = request.form['header']
+			post.post_content = request.form['content']
+			session.commit()
+			return redirect(url_for('post', post_id=post_id))
+		return render_template('edit_post.html', post=post)
+
+
 if __name__ == '__main__':
 	app.run(debug=True, port=5002)

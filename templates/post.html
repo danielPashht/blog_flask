@@ -69,11 +69,21 @@
     .comment-form input[type="submit"]:hover {
         background-color: #2980b9;
     }
+    .edit-btn {
+        display: inline-block;
+        font-size: 14px;
+        color: gray;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 </style>
 
 <div class="article-container">
     <h1 class="article-title">{{ post.content }}</h1>
     <p class="article-meta">Posted by @{{ post.user_name }} on {{ post.created_at.strftime('%Y-%m-%d') }}</p>
+    <a class=edit-btn href="{{ url_for('edit_post', post_id=post.id) }}">Edit</a>
 
     <div class="article-content preserve-whitespace">
         {{ post.post_content }}
