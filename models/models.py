@@ -11,6 +11,7 @@ class Post(BaseModel):
 
     user_name = Column(String)
     content = Column(Text)
+    post_content = Column(Text)
     created_at = Column(DateTime, default=datetime.utcnow)
 
 
@@ -18,7 +19,7 @@ class Comment(BaseModel):
     __tablename__ = 'comments'
 
     user_name = Column(String)
-    content = Column(Text)
+    content = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow)
     post_id = Column(Integer, ForeignKey('posts.id'))
     post = relationship('Post', backref='comments')

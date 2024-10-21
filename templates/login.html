@@ -2,9 +2,56 @@
 {% block title %}Login Page{% endblock %}
 
 {% block content %}
-<form action="#" method="post">
-    <p>Name:</p>
-    <p><input type="text" name="name"></p>
-    <p><input type="submit" value="Login" /></p>
-</form>
+<style>
+    .login-container {
+        max-width: 300px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .login-title {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+    .login-form label {
+        display: block;
+        margin-bottom: 5px;
+        color: #7f8c8d;
+    }
+    .login-form input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+    .login-form input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .login-form input[type="submit"]:hover {
+        background-color: #2980b9;
+    }
+</style>
+
+<div class="login-container">
+    <h2 class="login-title">Login</h2>
+    <form class="login-form" action="#" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <input type="submit" value="Login">
+    </form>
+</div>
 {% endblock %}

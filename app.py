@@ -7,7 +7,7 @@ from datetime import timedelta
 
 app = Flask(__name__)
 app.secret_key = 'secret'
-app.permanent_session_lifetime = timedelta(minutes=10)
+app.permanent_session_lifetime = timedelta(days=1)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -40,7 +40,7 @@ def add_post():
 		return redirect(url_for('login'))
 	if request.method == 'POST':
 		with get_session() as session:
-			post = Post(user_name=flask_session['user'], content=request.form['content'])
+			post = Post(user_name=flask_session['user'], content=request.form['header'], post_content=request.form['content'])
 			session.add(post)
 		return redirect(url_for('index'))
 	else:

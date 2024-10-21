@@ -9,12 +9,11 @@
         padding: 20px;
     }
     .container {
-        max-width: 600px;
-        margin: 0 auto;
+        margin: 30px;
         background-color: white;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        padding: 20px;
+        padding: 25px;
     }
     h2 {
         color: black;
@@ -52,7 +51,9 @@
         <li class="post">
             <div class="user-name">@{{ post.user_name }}</div>
             <p class="post-content">{{ post.content }}</p>
-            <p class="post-date">{{ post.created_at.strftime('%Y-%m-%d') }}</p>
+            <div class="post-date">{{ post.created_at.strftime('%Y-%m-%d') }}</div>
+            <a href="{{ url_for('post', post_id=post.id) }}">Read</a>
+        </li>
         {% endfor %}
     </ul>
 </div>

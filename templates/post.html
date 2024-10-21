@@ -2,22 +2,99 @@
 {% block title %}Post{% endblock %}
 
 {% block content %}
-<h2>{{ post.content }}</h2>
-<p>Posted by @{{ post.user_name }} on {{ post.created_at.strftime('%Y-%m-%d') }}</p>
+<style>
+    .article-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+    }
+    .article-title {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        color: #2c3e50;
+    }
+    .article-meta {
+        font-size: 0.9em;
+        color: #7f8c8d;
+        margin-bottom: 20px;
+    }
+    .article-content {
+        margin-bottom: 30px;
+    }
+    .preserve-whitespace {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+    .comments-section {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 5px;
+    }
+    .comment-list {
+        list-style-type: none;
+        padding: 0;
+    }
+    .comment {
+        background-color: white;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .comment-meta {
+        font-size: 0.8em;
+        color: #7f8c8d;
+    }
+    .comment-form textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .comment-form input[type="submit"] {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .comment-form input[type="submit"]:hover {
+        background-color: #2980b9;
+    }
+</style>
 
-<h3>Comments</h3>
-<ul>
-    {% for comment in comments %}
-    <li>
-        <p>{{ comment.content }}</p>
-        <p>Commented by @{{ comment.user_name }} on {{ comment.created_at.strftime('%Y-%m-%d') }}</p>
-    </li>
-    {% endfor %}
-</ul>
+<div class="article-container">
+    <h1 class="article-title">{{ post.content }}</h1>
+    <p class="article-meta">Posted by @{{ post.user_name }} on {{ post.created_at.strftime('%Y-%m-%d') }}</p>
 
-<h3>Add a Comment</h3>
-<form action="" method="post">
-    <textarea name="content" placeholder="Add your comment" rows="2"></textarea>
-    <input type="submit" value="Comment">
-</form>
+    <div class="article-content preserve-whitespace">
+        {{ post.post_content }}
+    </div>
+
+    <div class="comments-section">
+        <h3>Comments</h3>
+        <ul class="comment-list">
+            {% for comment in comments %}
+            <li class="comment">
+                <p class="preserve-whitespace">{{ comment.content }}</p>
+                <p class="comment-meta">Commented by @{{ comment.user_name }} on {{ comment.created_at.strftime('%Y-%m-%d') }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h4>Add a Comment</h4>
+        <form class="comment-form" action="" method="post">
+            <textarea name="content" placeholder="Add your comment" rows="3"></textarea>
+            <input type="submit" value="Comment">
+        </form>
+    </div>
+</div>
 {% endblock %}

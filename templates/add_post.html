@@ -5,21 +5,23 @@
 <style>
     #add-post-form {
         text-align: center;
-        margin: 0 auto; /* Center the form horizontally */
+        margin: 0 auto;
         max-width: 600px;
         background-color: white;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
         padding: 20px;
     }
-    textarea {
+
+    input[type="text"], textarea {
         width: 100%;
         padding: 10px;
         font-size: 16px;
         border: 1px solid #ccc;
         border-radius: 5px;
-        resize: vertical; /* Allow vertical resizing */
+        margin-bottom: 10px;
     }
+
     input[type="submit"] {
         padding: 10px 20px;
         font-size: 16px;
@@ -30,7 +32,9 @@
         cursor: pointer;
     }
 </style>
+
 <form action="#" method="post" id="add-post-form" onsubmit="return validateForm()">
+    <p><input type="text" name="header" id="header" placeholder="Post title" /></p>
     <p><textarea name="content" id="content" placeholder="What's on your mind today?" rows="4"></textarea></p>
     <p><input type="submit" value="Post!" /></p>
 </form>
@@ -45,4 +49,5 @@
         return true;
     }
 </script>
+
 {% endblock %}
