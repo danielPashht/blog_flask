@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask import session as flask_session
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+
 from models.models import Post, Comment
 from database.db import get_session
 from datetime import datetime, timedelta
@@ -8,6 +11,9 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 app.secret_key = 'secret'
 app.permanent_session_lifetime = timedelta(days=1)
+
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 
 @app.route('/login', methods=['GET', 'POST'])
