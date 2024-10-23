@@ -13,6 +13,7 @@ class Post(BaseModel):
     content = Column(Text)
     post_content = Column(Text)
     created_at = Column(DateTime, default=datetime.utcnow)
+    edited_at = Column(DateTime, default=None)
 
 
 class Comment(BaseModel):

@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask import session as flask_session
 from models.models import Post, Comment
 from database.db import get_session
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 
 app = Flask(__name__)
@@ -64,13 +64,13 @@ def edit_post(post_id):
 	if 'user' not in flask_session:
 		return redirect(url_for('login'))
 	with get_session() as session:
-		post = session.query(Post).filter(Post.id == post_id).first()
+		_post = session.query(Post).filter(Post.id == post_id).first()
 		if request.method == 'POST':
-			post.content = request.form['header']
-			post.post_content = request.form['content']
-			session.commit()
+			_post.content = request.form['header']
+			_post.post_content = request.form['content']
+			_post.edited_at = datetime.utcnow()
 			return redirect(url_for('post', post_id=post_id))
-		return render_template('edit_post.html', post=post)
+		return render_template('edit_post.html', post=_post)
 
 
 if __name__ == '__main__':
